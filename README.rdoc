@@ -1,0 +1,6 @@
+Steps to create:
+
+$ rails g model category key:string name:string
+$ rails g model recipe category_id:integer key:string name:string description:text image:string preparation:text
+$ rails g model direction recipe_id:integer description:text
+$ rails g model ingredient recipe_id:integer quantity:string name:string measurements:string

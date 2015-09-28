@@ -1,0 +1,61 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+          <div class="col-lg-6 col-sm-7">
+            <%=link_to('Back', params[:category] ? {controller: 'category', action: 'show', key: params[:category]} : root_url, {class: 'back-btn'}) %>
+            <div class="recipe">
+              <h2>
+                <%= @recipe.name %>
+              </h2>
+              <h5>
+                Preparation
+              </h5>
+              <p>
+                <%= @recipe.preparation %>
+              </p>
+              <hr>
+              <h5>
+                Directions
+              </h5>
+              <ol>
+                <% @recipe.directions.each do |direction| %>
+                  <li>
+                    <p>
+                      <%= direction.description %>
+                    </p>
+                  </li>
+                <% end %>
+              </ol>
+            </div>
+          </div>
+          <div class="col-sm-5 col-lg-offset-1">
+            <div class="panel panel-default">
+              <%= image_tag(@recipe.image, class: 'img-responsive') %>
+              <div class="panel-body">
+                <h5>
+                  Ingredient List
+                </h5>
+                <table class="table recipe-table">
+                  <tbody>
+                  <% @recipe.ingredients.each do |ingredient| %>
+                    <tr>
+                      <td>
+                        <%= ingredient.quantity %>
+                        <%= ingredient.measurements %>
+                        <%= ingredient.name %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
