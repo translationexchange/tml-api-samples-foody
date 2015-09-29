@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type"  content="application/xhtml+xml; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="google" content="notranslate">
+
+  <title>Foody</title>
+
+  <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" />
+
+  <%= stylesheet_link_tag    'bootstrap.min.css', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'jquery.min.js', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'bootstrap.min.js', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body data-spy='scroll' data-target='#nav-categories'>
+
+<%= render 'layouts/flashes' %>
+<%= render 'layouts/navigation' %>
+
+<%= yield %>
+
+<%= render 'layouts/footer' %>
+
+</body>
+
+</html>

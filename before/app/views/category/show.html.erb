@@ -1,0 +1,18 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <a href="/" class="back-btn">Back</a>
+      </div>
+    </div>
+
+    <div class="page-header">
+      <h3>
+        <%= @category.name %>
+      </h3>
+    </div>
+
+    <%= render(partial: '/category/recipes', locals: {category: @category, recipes: @category.recipes, featured: true}) %>
+
+  </div>
+</div>

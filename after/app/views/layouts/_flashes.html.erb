@@ -1,0 +1,35 @@
+<% if flash[:notice] %>
+    <div id="flash_notice">
+      <div class="alert alert-success strong" style="margin-bottom:0px; border-radius: 0px;">
+        <%=link_to('×', '#', :onclick => "$('#flash_notice').hide(); return false;", :class => 'close') %>
+        <%= flash[:notice] %>
+      </div>
+      <% flash[:notice] = nil %>
+    </div>
+<% end %>
+
+<% if flash[:error] %>
+    <div id="flash_error">
+      <div class="alert alert-danger strong" style="margin-bottom:0px; border-radius: 0px;">
+        <%=link_to('×', '#', :onclick => "$('#flash_error').hide(); return false;", :class => 'close') %>
+        <%= flash[:error] %>
+      </div>
+      <%flash[:error] = nil%>
+    </div>
+<% end %>
+
+<% if flash[:warning] %>
+    <div id="flash_warning">
+      <div class="alert strong" style="margin-bottom:0px; border-radius: 0px;">
+        <%=link_to('×', '#', :onclick => "$('#flash_warning').hide(); return false;", :class => 'close') %>
+        <%= flash[:warning] %>
+      </div>
+      <%flash[:warning] = nil%>
+    </div>
+<% end %>
+
+<noscript>
+  <div class="flash_error alert danger">
+    This site requires JavaScript! Please enable JavaScript in your browser's settings to use this part of the site.
+  </div>
+</noscript>
