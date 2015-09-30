@@ -43,9 +43,9 @@
                     <tr>
                       <td>
                         <% if ingredient.measurements.blank? %>
-                            <%= tr("[bold: {num}] {num | #{ingredient.name}}", num: ingredient.quantity.to_i) %>
+                            <%= tr("[bold: {num}] {num | #{ingredient.name.singularize}}", num: [ingredient.quantity.to_i, ingredient.quantity]) %>
                         <% else %>
-                            <%= tr("[bold: {num || #{ingredient.measurements}}] of #{ingredient.name}", num: ingredient.quantity.to_i) %>
+                            <%= tr("[bold: {num || #{ingredient.measurements.singularize}}] of #{ingredient.name}", num: [ingredient.quantity.to_i, ingredient.quantity]) %>
                         <% end %>
                       </td>
                     </tr>
