@@ -12,7 +12,7 @@
       </h3>
     </div>
 
-    <%= render(partial: '/category/recipes', locals: {category: @category, recipes: @category.recipes, featured: true}) %>
+    <%= render(partial: '/recipe/list', locals: {category: @category, recipes: @category.recipes, featured: true}) %>
 
   </div>
 </div>

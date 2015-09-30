@@ -43,8 +43,14 @@
                     <tr>
                       <td>
                         <%= ingredient.quantity %>
-                        <%= ingredient.measurements %>
-                        <%= ingredient.name %>
+
+                        <% if ingredient.measurements %>
+                          <%= ingredient.measurements.pluralize(ingredient.quantity) %>
+                          of
+                          <%= ingredient.name %>
+                        <% else %>
+                          <%= ingredient.name.pluralize(ingredient.quantity) %>
+                        <% end %>
                       </td>
                     </tr>
                   <% end %>
@@ -55,7 +61,7 @@
 
             <div class="row text-right" style="padding:0px 15px;">
               <%=link_to('Update Recipe', {action: 'create', id: @recipe.id}, class:'btn btn-default btn-sm') %>
-              <button class="btn btn-default btn-sm" onclick="deleteRecipe()">Delete</button>
+              <%=link_to('Delete', '#', onclick: 'deleteRecipe()', class:'btn btn-default btn-sm') %>
             </div>
 
           </div>

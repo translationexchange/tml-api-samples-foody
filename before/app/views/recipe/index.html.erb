@@ -28,7 +28,7 @@
           <%= link_to(category.name, controller: 'category', action: 'show', key: category.key) %>
         </h3>
       </div>
-      <%= render(partial: '/category/recipes', locals: {category: category, recipes: category.recipes.featured}) %>
+      <%= render(partial: '/recipe/list', locals: {category: category, recipes: category.recipes.featured}) %>
     <% end %>
   </div>
 </div>

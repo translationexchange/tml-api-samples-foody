@@ -7,13 +7,12 @@
                 <%= image_tag(recipe.image, class: 'img-responsive') %>
                 <div class="panel-body">
                   <h4>
-                    <%=recipe.name%>
+                    <%=tr(recipe.name)%>
                   </h4>
                   <p>
-                    <%=recipe.description%>
+                    <%=tr(recipe.description)%>
                   </p>
                 </div>
-                </a>
             <% end %>
           </div>
       <% end %>

@@ -9,26 +9,26 @@
             <div class="recipe">
               <h2>
                 <% if @recipe.id %>
-                    Update Recipe
+                    <%= tr("Update Recipe") %>
                 <% else %>
-                    Add Recipe
+                    <%= tr("Add Recipe") %>
                 <% end %>
               </h2>
 
               <div>
-                <%= f.text_field(:name, placeholder: 'Recipe Name', class: 'form-control') %>
+                <%= f.text_field(:name, placeholder: trl('Recipe Name'), class: 'form-control') %>
               </div>
 
               <div style="padding: 10px 0;">
-                <%= f.text_area(:description, placeholder: 'Description', class: 'form-control') %>
+                <%= f.text_area(:description, placeholder: trl('Description'), class: 'form-control') %>
               </div>
 
               <div style="padding-bottom: 10px;">
-                <%= f.text_field(:image, placeholder: 'Image Url', class: 'form-control') %>
+                <%= f.text_field(:image, placeholder: trl('Image Url'), class: 'form-control') %>
               </div>
 
               <h5>
-                Category
+                <%=tr("Category") %>
               </h5>
 
               <div style="padding-bottom: 10px">
@@ -36,18 +36,18 @@
               </div>
 
               <div id="new_category_field" style="padding-bottom: 10px; <%='display:none' unless @recipe.category_id.blank? %>">
-                <%= text_field_tag(:new_category_name, '', placeholder: 'New category name', class: 'form-control') %>
+                <%= text_field_tag(:new_category_name, '', placeholder: trl('New category name'), class: 'form-control') %>
               </div>
 
               <h5>
-                Preparation
+                <%= tr("Preparation") %>
               </h5>
               <p>
-                <%= f.text_area(:preparation, placeholder: 'Preparation instructions', class: 'form-control', style: 'height: 80px;') %>
+                <%= f.text_area(:preparation, placeholder: trl('Preparation instructions'), class: 'form-control', style: 'height: 80px;') %>
               </p>
               <hr>
               <h5>
-                Directions
+                <%= tr("Directions") %>
               </h5>
               <table class="table recipe-table">
                 <% @recipe.directions.each do |direction| %>
@@ -69,16 +69,16 @@
               <%= image_tag(@recipe.image, class: 'img-responsive') unless @recipe.image.blank? %>
               <div class="panel-body">
                 <h5>
-                  Ingredient List
+                  <%= tr("Ingredient List") %>
                 </h5>
                 <table class="table recipe-table">
                   <tbody>
                   <% @recipe.ingredients.each do |ingredient| %>
                       <tr>
                         <td>
-                          <%= text_field_tag("recipe[ingredients][][quantity]", ingredient.quantity, placeholder: 'Amount', class: 'form-control', style: 'width: 60px; display: inline-block') %>
-                          <%= text_field_tag("recipe[ingredients][][measurements]", ingredient.measurements, placeholder: 'Measurements', class: 'form-control', style: 'width: 70px; display: inline-block') %>
-                          <%= text_field_tag("recipe[ingredients][][name]", ingredient.name, placeholder: 'Name', class: 'form-control', style: 'width: 120px; display: inline-block') %>
+                          <%= text_field_tag("recipe[ingredients][][quantity]", ingredient.quantity, placeholder: trl('Amount'), class: 'form-control', style: 'width: 60px; display: inline-block') %>
+                          <%= text_field_tag("recipe[ingredients][][measurements]", ingredient.measurements, placeholder: trl('Measurements'), class: 'form-control', style: 'width: 70px; display: inline-block') %>
+                          <%= text_field_tag("recipe[ingredients][][name]", ingredient.name, placeholder: trl('Name', 'Name of the ingredient'), class: 'form-control', style: 'width: 120px; display: inline-block') %>
                         </td>
                         <td>
                           <a class="btn btn-default" href="#" onclick="addElement(this); return false;" role="button" style="display:inline-block; width: 30px; padding: 5px 5px;">+</a>
@@ -93,8 +93,8 @@
           </div>
         </div>
         <div class="row text-center" style="padding-top:50px">
-          <button class="btn btn-default btn-primary btn-lg" type="submit">Submit</button>
-          <%=link_to('Cancel', @recipe.id ? {action: 'show', key: @recipe.key} : '/', class: 'btn btn-default btn-lg') %>
+          <button class="btn btn-default btn-primary btn-lg" type="submit"><%=tr("Submit", "Submit recipe") %></button>
+          <%=link_to(tr('Cancel'), @recipe.id ? {action: 'show', key: @recipe.key} : '/', class: 'btn btn-default btn-lg') %>
         </div>
       <% end %>
       </div>

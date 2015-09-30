@@ -1,10 +1,10 @@
 <div class="jumbotron text-center">
   <div class="container">
     <h1>
-      The Best in International Food
+      <%= tr('The Best in International Food') %>
     </h1>
     <p>
-      Food from around the world
+      <%= tr('Food from around the world') %>
     </p>
   </div>
 </div>
@@ -13,7 +13,7 @@
     <div id="nav-categories">
       <ul class="nav nav-tabs">
         <% @categories.each do |category| %>
-          <li><a href="#<%=category.key %>"><%=category.name %></a></li>
+          <li><a href="#<%=category.key %>"><%=tr(category.name) %></a></li>
         <% end %>
       </ul>
     </div>
@@ -25,10 +25,10 @@
       <a id="<%= category.key %>" class="anchor">&nbsp;</a>
       <div class="page-header">
         <h3>
-          <%= link_to(category.name, controller: 'category', action: 'show', key: category.key) %>
+          <%= link_to(tr(category.name), controller: 'category', action: 'show', key: category.key) %>
         </h3>
       </div>
-      <%= render(partial: '/category/recipes', locals: {category: category, recipes: category.recipes.featured}) %>
+      <%= render(partial: '/recipe/list', locals: {category: category, recipes: category.recipes.featured}) %>
     <% end %>
   </div>
 </div>
