@@ -45,9 +45,12 @@ group :development do
   gem 'spring'
 end
 
-gem 'tml', :path => '/Users/Berk/Projects/Tml/tml-ruby'
-gem 'tml-rails', :path => '/Users/Berk/Projects/Tml/tml-rails'
+# gem 'tml', :path => '/Users/Berk/Projects/Tml/tml-ruby'
+# gem 'tml-rails', :path => '/Users/Berk/Projects/Tml/tml-rails'
 
 # gem 'tml-rails'
+
+gem 'tml', :git => 'git://github.com/translationexchange/tml-ruby.git'
+gem 'tml-rails', :git => 'git://github.com/translationexchange/tml-rails.git'
 
 gem 'dalli'
