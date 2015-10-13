@@ -13,8 +13,8 @@ Tml.configure do |config|
   config.cache = {
     enabled:    false,
     adapter:    'memcache',
-    namespace:  '096e039beebf4237f6829040276c7851996b2c8601abc6c4225d215d32b4c12c',
-    host:       'localhost:11211'
+    host:       'tememcached.yptuob.cfg.usw1.cache.amazonaws.com:11211',
+    namespace:  'b8206d1b982a5410f34da48490d7653fe25266f16c70482ccc953fb7264547d1',
   }
 
   # config.cache = {

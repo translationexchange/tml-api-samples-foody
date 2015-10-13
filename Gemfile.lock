@@ -8,7 +8,7 @@ PATH
 PATH
   remote: /Users/Berk/Projects/Tml/tml-ruby
   specs:
-    tml (5.1.1)
+    tml (5.1.2)
       faraday (~> 0.8)
       nokogiri (~> 1.5)
 
