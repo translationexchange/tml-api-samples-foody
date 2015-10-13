@@ -50,7 +50,10 @@ end
 
 # gem 'tml-rails'
 
+gem 'unicorn', '~> 4.8'
+
 gem 'tml', :git => 'git://github.com/translationexchange/tml-ruby.git'
 gem 'tml-rails', :git => 'git://github.com/translationexchange/tml-rails.git'
 
 gem 'dalli'
+
