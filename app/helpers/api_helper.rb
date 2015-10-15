@@ -23,16 +23,24 @@ module ApiHelper
     }
   end
 
+  def image_url_for(path)
+    return path if path.match(/^http/)
+    "#{request_host}/assets/#{path}"
+  end
+
+  def request_host
+    if [80, 443].include?(request.port)
+      "#{request.scheme}://#{request.host}"
+    else
+      "#{request.scheme}://#{request.host}:#{request.port}"
+    end
+  end
+
   def api_url_for(url_params)
     result = url_for(url_params.merge(
         :access_token => params[:access_token]
     ))
-
-    if [80, 443].include?(request.port)
-      "#{request.scheme}://#{request.host}/api/#{version}#{result}"
-    else
-      "#{request.scheme}://#{request.host}:#{request.port}/api/#{version}#{result}"
-    end
+    "#{request_host}/api/#{version}#{result}"
   end
 
   def first_page

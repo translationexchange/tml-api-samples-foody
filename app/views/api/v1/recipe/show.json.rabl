@@ -3,7 +3,7 @@ object @recipe
 attributes :id, :key, :name, :locale, :description, :preparation, :featured_index
 
 node(:image) do |obj|
-  obj.image
+  image_url_for(obj.image)
 end
 
 node(:links) do |obj|
