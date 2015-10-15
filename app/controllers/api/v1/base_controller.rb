@@ -30,20 +30,32 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-#-- ::CategoryController Routing Information
+#-- ::Api::V1::BaseController Routing Information
 #
-#  get       /category/:key                      => show
 #
 #++
 
-class CategoryController < ApplicationController
+class Api::V1::BaseController < ApplicationController
 
-  def show
-    @category = Category.find_by_key(params[:key])
-    unless @category
-      flash[:error] = 'Invalid category key'
-      redirect_to root_url
-    end
+  helper :api
+
+  def page
+    (params[:page] || 1).to_i
+  end
+  helper_method :page
+
+  def per_page
+    (params[:per_page] || params[:limit] || 50).to_i
+  end
+  helper_method :per_page
+
+  def version
+    @version ||= self.class.name.underscore.split('/')[1]
+  end
+  helper_method :version
+
+  def render_no_content
+    head :no_content
   end
 
 end

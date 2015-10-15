@@ -30,20 +30,40 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-#-- ::CategoryController Routing Information
+#-- ::Api::V1::IngredientController Routing Information
 #
-#  get       /category/:key                      => show
+#  get       /api/v1/ingredients/:id             => show
+#  post      /api/v1/ingredients/:id             => create
+#  put       /api/v1/ingredients/:id             => update
+#  delete    /api/v1/ingredients/:id             => delete
 #
 #++
 
-class CategoryController < ApplicationController
+class Api::V1::IngredientController < Api::V1::BaseController
 
   def show
-    @category = Category.find_by_key(params[:key])
-    unless @category
-      flash[:error] = 'Invalid category key'
-      redirect_to root_url
-    end
+    ingredient
+  end
+
+  def create
+    @ingredient = Ingredient.create(params.permit(:recipe_id, :quantity, :name, :measurements))
+    render(:template => '/api/v1/ingredient/show')
+  end
+
+  def update
+    ingredient.update_attributes(params.permit(:quantity, :name, :measurements))
+    render(:template => '/api/v1/ingredient/show')
+  end
+
+  def delete
+    ingredient.destroy
+    render_no_content
+  end
+
+private
+
+  def ingredient
+    @ingredient ||= Ingredient.find(params[:id])
   end
 
 end

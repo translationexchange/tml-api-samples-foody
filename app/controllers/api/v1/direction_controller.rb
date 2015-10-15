@@ -30,20 +30,40 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-#-- ::CategoryController Routing Information
+#-- ::Api::V1::DirectionController Routing Information
 #
-#  get       /category/:key                      => show
+#  get       /api/v1/directions/:id              => show
+#  post      /api/v1/directions/:id              => create
+#  put       /api/v1/directions/:id              => update
+#  delete    /api/v1/directions/:id              => delete
 #
 #++
 
-class CategoryController < ApplicationController
+class Api::V1::DirectionController < Api::V1::BaseController
 
   def show
-    @category = Category.find_by_key(params[:key])
-    unless @category
-      flash[:error] = 'Invalid category key'
-      redirect_to root_url
-    end
+    direction
+  end
+
+  def create
+    @direction = Direction.create(params.permit(:recipe_id, :description))
+    render(:template => '/api/v1/direction/show')
+  end
+
+  def update
+    direction.update_attributes(params.permit(:description))
+    render(:template => '/api/v1/direction/show')
+  end
+
+  def delete
+    direction.destroy
+    render_no_content
+  end
+
+private
+
+  def direction
+    @direction ||= Direction.find(params[:id])
   end
 
 end

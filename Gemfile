@@ -58,3 +58,7 @@ gem 'tml-rails', :git => 'git://github.com/translationexchange/tml-rails.git'
 
 gem 'dalli'
 
+gem 'rabl'
+gem 'versionist', '~> 1.3'
+gem 'kaminari', '~> 0.16'
+

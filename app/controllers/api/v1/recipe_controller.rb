@@ -30,20 +30,57 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-#-- ::CategoryController Routing Information
+#-- ::Api::V1::RecipeController Routing Information
 #
-#  get       /category/:key                      => show
+#  get       /api/v1/recipes                     => index
+#  get       /api/v1/recipes/:id                 => show
+#  post      /api/v1/recipes/:id                 => create
+#  put       /api/v1/recipes/:id                 => update
+#  delete    /api/v1/recipes/:id                 => delete
+#  get       /api/v1/recipes/:id/directions      => directions
+#  get       /api/v1/recipes/:id/ingredients     => ingredients
 #
 #++
 
-class CategoryController < ApplicationController
+class Api::V1::RecipeController < Api::V1::BaseController
+
+  def index
+    @recipes = Recipe.page(page).per(per_page)
+  end
 
   def show
-    @category = Category.find_by_key(params[:key])
-    unless @category
-      flash[:error] = 'Invalid category key'
-      redirect_to root_url
-    end
+    recipe
+  end
+
+  def delete
+    recipe.destroy
+    render_no_content
+  end
+
+  def create
+    @recipe = Recipe.create(params.permit(:category_id, :key, :name, :locale, :description, :image, :preparation))
+    render(:template => '/api/v1/recipe/show')
+  end
+
+  def update
+    recipe.update_attributes(params.permit(:key, :name, :locale, :description, :image, :preparation))
+    render(:template => '/api/v1/recipe/show')
+  end
+
+  def directions
+    @directions = recipe.directions.page(page).per(per_page)
+    render(:template => '/api/v1/direction/index')
+  end
+
+  def ingredients
+    @ingredients = recipe.ingredients.page(page).per(per_page)
+    render(:template => '/api/v1/ingredient/index')
+  end
+
+private
+
+  def recipe
+    @recipe ||= Recipe.find(params[:id])
   end
 
 end

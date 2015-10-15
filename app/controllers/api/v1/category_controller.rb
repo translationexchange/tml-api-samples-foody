@@ -30,20 +30,51 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-#-- ::CategoryController Routing Information
+#-- ::Api::V1::CategoryController Routing Information
 #
-#  get       /category/:key                      => show
+#  get       /api/v1/categories                  => index
+#  get       /api/v1/categories/:id              => show
+#  post      /api/v1/categories/:id              => create
+#  put       /api/v1/categories/:id              => update
+#  delete    /api/v1/categories/:id              => delete
+#  get       /api/v1/categories/:id/recipes      => recipes
 #
 #++
 
-class CategoryController < ApplicationController
+class Api::V1::CategoryController < Api::V1::BaseController
+
+  def index
+    @categories = Category.page(page).per(per_page)
+  end
 
   def show
-    @category = Category.find_by_key(params[:key])
-    unless @category
-      flash[:error] = 'Invalid category key'
-      redirect_to root_url
-    end
+    category
+  end
+
+  def create
+    @category = Category.create(params.permit(:key, :name, :locale))
+    render(:template => '/api/v1/category/show')
+  end
+
+  def update
+    category.update_attributes(params.permit(:key, :name, :locale))
+    render(:template => '/api/v1/category/show')
+  end
+
+  def delete
+    category.destroy
+    render_no_content
+  end
+
+  def recipes
+    @recipes = category.recipes.page(page).per(per_page)
+    render(:template => '/api/v1/recipe/index')
+  end
+
+private
+
+  def category
+    @category ||= Category.find(params[:id])
   end
 
 end

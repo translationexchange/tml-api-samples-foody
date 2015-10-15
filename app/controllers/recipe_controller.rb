@@ -32,13 +32,13 @@
 #
 #-- ::RecipeController Routing Information
 #
-#  get     /                          => index
-#  get     /recipe/create             => create
-#  post    /recipe/create             => create
-#  get     /recipe/:id/update         => create
-#  post    /recipe/:id/update         => create
-#  get     /recipe/:id/delete         => delete
-#  get     /recipe/:key               => show
+#  get       /                                   => index
+#  get       /recipe/create                      => create
+#  post      /recipe/create                      => create
+#  get       /recipe/:id/update                  => create
+#  post      /recipe/:id/update                  => create
+#  get       /recipe/:id/delete                  => delete
+#  get       /recipe/:key                        => show
 #
 #++
 
