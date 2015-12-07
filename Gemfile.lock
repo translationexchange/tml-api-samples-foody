@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/translationexchange/tml-rails.git
-  revision: 45764a4b88d3b8c3003992cdf9073ecacaf982f8
+  revision: 1141712da85a229a2b56e49b858c8846243b422e
   specs:
-    tml-rails (5.2.1)
+    tml-rails (5.2.2)
       rails (> 3.2)
       tml (~> 5.2)
 
