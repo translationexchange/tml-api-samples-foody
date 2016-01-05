@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get   'recipe/:key'         => 'recipe#show'
   get   'category/:key'       => 'category#show'
 
+
+  get   'test'                => 'test#index'
+
+
   api_version(
     :module     => 'Api::V1',
     :parameter  => {:name   => 'version', :value => '1'},

@@ -1,4 +1,11 @@
+<style>
+.jumbotron {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("<%=asset_url("heros/#{rand(1..19)}.jpg")%>") center center no-repeat;
+}
+</style>
+
 <div class="jumbotron text-center">
+  <div class="overlay"></div>
   <div class="container">
     <h1>
       <%= tr('The Best in International Food') %>

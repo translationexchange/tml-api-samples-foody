@@ -1,0 +1,18 @@
+<div class="text-center" style="padding:100px; font-size: 20px;">
+  <div class="container">
+
+    <%= tr("This is {user::pos} blog post", user: tr("Michael")) %>
+    <%= tr("This is your {count::ord} warning", count: 2) %>
+
+    <br><br>
+    <%= tr("[bold: {actor}] sent [bold: {target}] [link: {count || message}]", bold: "<span style='color: red; font-size: 24px;'>{$0}</span>", link: {href: ''}, actor: {gender: 'male', value: "Михаил"},  target: {gender: 'male', value: "Анна"}, count: 2) %>
+    <br>
+    <%= tr("[bold: {actor}] sent [bold: {target}] [link: {count || message}]", link: {href: ''}, target: {gender: 'male', value: "Михаил"},  actor: {gender: 'female', value: "Анна"}, count: 1) %>
+    <br>
+    <%= tr("[bold: {actor}] sent [bold: {target}] [link: {count || message}]", link: {href: ''}, target: {gender: 'male', value: "Михаил"},  actor: {gender: 'female', value: "Анна"}, count: 5) %>
+
+  </div>
+</div>
+
+
+
