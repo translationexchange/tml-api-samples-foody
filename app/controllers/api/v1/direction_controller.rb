@@ -32,6 +32,10 @@
 #
 #-- ::Api::V1::DirectionController Routing Information
 #
+#  get       /directions/:id                     => show
+#  post      /directions/:id                     => create
+#  put       /directions/:id                     => update
+#  delete    /directions/:id                     => delete
 #  get       /api/v1/directions/:id              => show
 #  post      /api/v1/directions/:id              => create
 #  put       /api/v1/directions/:id              => update

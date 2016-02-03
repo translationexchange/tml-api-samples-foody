@@ -32,6 +32,10 @@
 #
 #-- ::Api::V1::IngredientController Routing Information
 #
+#  get       /ingredients/:id                    => show
+#  post      /ingredients/:id                    => create
+#  put       /ingredients/:id                    => update
+#  delete    /ingredients/:id                    => delete
 #  get       /api/v1/ingredients/:id             => show
 #  post      /api/v1/ingredients/:id             => create
 #  put       /api/v1/ingredients/:id             => update

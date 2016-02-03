@@ -32,12 +32,19 @@
 #
 #-- ::Api::V1::CategoryController Routing Information
 #
+#  get       /categories                         => index
+#  get       /categories/:id                     => show
+#  post      /categories/:id                     => create
+#  put       /categories/:id                     => update
+#  delete    /categories/:id                     => delete
+#  get       /categories/:id/recipes             => recipes
 #  get       /api/v1/categories                  => index
 #  get       /api/v1/categories/:id              => show
 #  post      /api/v1/categories/:id              => create
 #  put       /api/v1/categories/:id              => update
 #  delete    /api/v1/categories/:id              => delete
 #  get       /api/v1/categories/:id/recipes      => recipes
+#  get       /categories                         => index
 #
 #++
 

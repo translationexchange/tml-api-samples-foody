@@ -32,6 +32,13 @@
 #
 #-- ::Api::V1::RecipeController Routing Information
 #
+#  get       /recipes                            => index
+#  get       /recipes/:id                        => show
+#  post      /recipes/:id                        => create
+#  put       /recipes/:id                        => update
+#  delete    /recipes/:id                        => delete
+#  get       /recipes/:id/directions             => directions
+#  get       /recipes/:id/ingredients            => ingredients
 #  get       /api/v1/recipes                     => index
 #  get       /api/v1/recipes/:id                 => show
 #  post      /api/v1/recipes/:id                 => create
@@ -39,6 +46,7 @@
 #  delete    /api/v1/recipes/:id                 => delete
 #  get       /api/v1/recipes/:id/directions      => directions
 #  get       /api/v1/recipes/:id/ingredients     => ingredients
+#  get       /recipes                            => index
 #
 #++
 
