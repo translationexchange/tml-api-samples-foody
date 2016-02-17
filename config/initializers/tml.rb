@@ -21,17 +21,11 @@ Tml.configure do |config|
         cache:    1.second
     }
 
-    config.logger  = {
-        enabled:  false,
-        path:     "#{Rails.root}/log/tml.log",
-        level:    'debug'
-    }
-
   else
     config.application = {
         host:   'http://localhost:3000',
-        key:    'ae896adad3f0632fa20e9d5fbda97655abdac41843dbfd53431c0a27a49111db',
-        token:  '8ca2abef6499e9662acca850a54ff298454f101f11644e9c0235125cfc47348e'
+        key:    'c3f8c6cf0c11cd8b5953a5e69781b509a91b0005c9c459908b42b22b8ad37c8a',
+        token:  'af5954f71a2d0c6b6e01d28246d22902c06a9312c9935c425f4ae3df5af000fd'
     }
 
     config.cache = {
@@ -45,12 +39,12 @@ Tml.configure do |config|
         host:     'http://localhost:8282/dist/agent.js',
         cache:    5.minutes
     }
-
-    config.logger  = {
-        enabled:  true,
-        path:     "#{Rails.root}/log/tml.log",
-        level:    'debug'
-    }
   end
+
+  config.logger  = {
+      enabled:  Rails.env.development?,
+      path:     "#{Rails.root}/log/tml.log",
+      level:    'debug'
+  }
 
 end

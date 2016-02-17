@@ -25,7 +25,8 @@ module ApiHelper
 
   def image_url_for(path)
     return path if path.match(/^http/)
-    "#{request_host}/assets/#{path}"
+    # "#{request_host}/assets/#{path}"
+    "#{request_host}/images/#{path}"
   end
 
   def request_host
