@@ -1,6 +1,6 @@
 object @recipe
 
-attributes :id, :key, :name, :locale, :description, :preparation, :featured_index
+attributes :id, :key, :name, :category_id, :locale, :description, :preparation, :featured_index
 
 node(:image) do |obj|
   image_url_for(obj.image)

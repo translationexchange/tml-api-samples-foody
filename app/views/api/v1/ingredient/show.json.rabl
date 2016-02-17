@@ -1,6 +1,6 @@
 object @ingredient
 
-attributes :id, :quantity, :name, :measurements, :index
+attributes :id, :recipe_id, :quantity, :name, :measurements, :index
 
 node(:links) do |obj|
   {

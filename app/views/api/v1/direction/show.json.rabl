@@ -1,6 +1,6 @@
 object @direction
 
-attributes :id, :description, :index
+attributes :id, :recipe_id, :description, :index
 
 node(:links) do |obj|
   {
