@@ -30,10 +30,58 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#-- ::Api::V1::RecipesController Routing Information
+#
+#  get       /api/v1/recipes/:id/directions      => directions
+#  get       /api/v1/recipes/:id/ingredients     => ingredients
+#  get       /api/v1/recipes                     => index
+#  post      /api/v1/recipes                     => create
+#  get       /api/v1/recipes/:id                 => show
+#  patch     /api/v1/recipes/:id                 => update
+#  put       /api/v1/recipes/:id                 => update
+#  delete    /api/v1/recipes/:id                 => destroy
+#
 #++
 
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class Api::V1::RecipesController < Api::V1::BaseController
+
+  def index
+    @recipes = Recipe.page(page).per(per_page)
+  end
+
+  def show
+    recipe
+  end
+
+  def destroy
+    recipe.destroy
+    render_no_content
+  end
+
+  def create
+    @recipe = Recipe.create(params.permit(:category_id, :key, :name, :locale, :description, :image, :preparation))
+    render(:template => '/api/v1/recipe/show')
+  end
+
+  def update
+    recipe.update_attributes(params.permit(:key, :name, :locale, :description, :image, :preparation))
+    render(:template => '/api/v1/recipe/show')
+  end
+
+  def directions
+    @directions = recipe.directions.page(page).per(per_page)
+    render(:template => '/api/v1/direction/index')
+  end
+
+  def ingredients
+    @ingredients = recipe.ingredients.page(page).per(per_page)
+    render(:template => '/api/v1/ingredient/index')
+  end
+
+private
+
+  def recipe
+    @recipe ||= Recipe.find(params[:id])
+  end
+
 end

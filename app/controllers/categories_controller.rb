@@ -30,10 +30,20 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#-- ::CategoriesController Routing Information
+#
+#  get       /categories/:id                     => show
+#
 #++
 
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class CategoriesController < ApplicationController
+
+  def show
+    @category = Category.find_by_key(params[:id])
+    unless @category
+      flash[:error] = 'Invalid category key'
+      redirect_to root_url
+    end
+  end
+
 end

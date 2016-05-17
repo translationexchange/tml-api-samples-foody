@@ -2,17 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <%= form_for(:recipe, url: {id: @recipe.id}, html: {method: 'post'}) do |f| %>
+        <%= form_for(:recipe, url: {action: :create}, html: {method: :post}) do |f| %>
         <div class="row">
           <div class="col-lg-6 col-sm-7">
 
             <div class="recipe">
               <h2>
-                <% if @recipe.id %>
-                    <%= tr("Update Recipe") %>
-                <% else %>
-                    <%= tr("Add Recipe") %>
-                <% end %>
+                <%= tr("Add Recipe") %>
               </h2>
 
               <div>
@@ -94,14 +90,13 @@
         </div>
         <div class="row text-center" style="padding-top:50px">
           <button class="btn btn-default btn-primary btn-lg" type="submit"><%=tr("Submit", "Submit recipe") %></button>
-          <%=link_to(tr('Cancel'), @recipe.id ? {action: 'show', key: @recipe.key} : '/', class: 'btn btn-default btn-lg') %>
+          <%=link_to(tr('Cancel'), {}, class: 'btn btn-default btn-lg') %>
         </div>
       <% end %>
       </div>
     </div>
   </div>
 </div>
-
 
 <script>
     function verifyCategory(list) {

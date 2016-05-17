@@ -30,10 +30,41 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#-- ::Api::V1::IngredientsController Routing Information
+#
+#  post      /api/v1/ingredients                 => create
+#  get       /api/v1/ingredients/:id             => show
+#  patch     /api/v1/ingredients/:id             => update
+#  put       /api/v1/ingredients/:id             => update
+#  delete    /api/v1/ingredients/:id             => destroy
+#
 #++
 
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class Api::V1::IngredientsController < Api::V1::BaseController
+
+  def show
+    ingredient
+  end
+
+  def create
+    @ingredient = Ingredient.create(params.permit(:recipe_id, :quantity, :name, :measurements))
+    render(:template => '/api/v1/ingredient/show')
+  end
+
+  def update
+    ingredient.update_attributes(params.permit(:quantity, :name, :measurements))
+    render(:template => '/api/v1/ingredient/show')
+  end
+
+  def destroy
+    ingredient.destroy
+    render_no_content
+  end
+
+private
+
+  def ingredient
+    @ingredient ||= Ingredient.find(params[:id])
+  end
+
 end

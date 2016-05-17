@@ -1,15 +1,49 @@
 <div class="text-center" style="padding:100px; font-size: 20px;">
   <div class="container">
 
-    <%= tr("This is {user::pos} blog post", user: tr("Michael")) %>
-    <%= tr("This is your {count::ord} warning", count: 2) %>
 
-    <br><br>
-    <%= tr("[bold: {actor}] sent [bold: {target}] [link: {count || message}]", bold: "<span style='color: red; font-size: 24px;'>{$0}</span>", link: {href: ''}, actor: {gender: 'male', value: "Михаил"},  target: {gender: 'male', value: "Анна"}, count: 2) %>
+    <%
+       @users = [{name: 'Michael', gender: 'male'}, {name: 'Peter', gender: 'male'}, {name: 'Anna', gender: 'female'}, {name: 'Alex', gender: 'male'}]
+       @target = {name: 'Amy', gender: 'female'}
+       @object = {type: 'video', title: 'Holiday Vacation'}
+
+       story = @users[0..2].collect{|u| u[:name]}.join(', ')
+       if @users.size > 2
+         story << " and #{@users.size - 3} other"
+         story << 's' unless @users.size == 4
+       end
+
+       story << " tagged #{@target[:name]}"
+
+       story << " in <a href='videos.com'>a"
+       if @object[:type].match(/^[aeiou]/)
+         story << 'n'
+       end
+
+       story << " #{@object[:type]} \"#{@object[:title]}\"</a>."
+    %>
+
+    <%= story.html_safe %>
+
     <br>
-    <%= tr("[bold: {actor}] sent [bold: {target}] [link: {count || message}]", link: {href: ''}, target: {gender: 'male', value: "Михаил"},  actor: {gender: 'female', value: "Анна"}, count: 1) %>
+
+    <!-- %= t('stories.video_tagging',
+          users: @users.to_sentence(),
+          user: @target[:name],
+          title: @object[:title],
+          url: 'videos.com'
+        ) % -->
+
     <br>
-    <%= tr("[bold: {actor}] sent [bold: {target}] [link: {count || message}]", link: {href: ''}, target: {gender: 'male', value: "Михаил"},  actor: {gender: 'female', value: "Анна"}, count: 5) %>
+
+    <%= tr('{users} tagged {user} in [link: a video "{title}"].',
+           users: [@users, :name, {limit: 3}],
+           user: [@target, :name],
+           title: @object[:title]
+        )
+    %>
+
+
 
   </div>
 </div>

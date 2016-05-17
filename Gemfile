@@ -49,14 +49,14 @@ end
 # gem 'tml', :path => '/Users/Berk/Projects/Tml/tml-ruby'
 # gem 'tml-rails', :path => '/Users/Berk/Projects/Tml/tml-rails'
 
-# gem 'tml-rails'
+gem 'tml-rails'
 
 gem 'unicorn', '~> 4.8'
 
-gem 'tml', :git => 'git://github.com/translationexchange/tml-ruby.git'
-gem 'tml-rails', :git => 'git://github.com/translationexchange/tml-rails.git'
+# gem 'tml', :git => 'git://github.com/translationexchange/tml-ruby.git'
+# gem 'tml-rails', :git => 'git://github.com/translationexchange/tml-rails.git'
 
-# gem 'tml-rails'
+# gem 'tml-rails', '~> 5.4.0'
 
 gem 'dalli'
 

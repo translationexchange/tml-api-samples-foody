@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2015 Translation Exchange, Inc.
+# Copyright (c) 2016 Translation Exchange, Inc.
 #
 #
 #  _______                  _       _   _             ______          _
@@ -33,6 +33,7 @@
 #-- ::TestController Routing Information
 #
 #  get       /test                               => index
+#  get       /test                               => emails
 #
 #++
 
@@ -40,6 +41,10 @@ class TestController < ApplicationController
 
   def index
 
+  end
+
+  def emails
+    # tml_postoffice.deliver('michael@test.com', :sample2, {user: 'Michael'}, {locale: 'ru'})
   end
 
 end

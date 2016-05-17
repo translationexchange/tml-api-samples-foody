@@ -1,26 +1,26 @@
-<%= tml_source('common/navigation/bar') do %>
-<div class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only"><%= trl('Toggle navigation') %></span>
-        <span class="icon-bar"></span> <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/"><strong>Foody</strong></a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-      </ul>
-
-      <div class="nav navbar-right navbar-text">
-        <%= tml_language_selector_tag(:sideflags, toggle: true) %>
+<%= tml_source('/common/navigation/bar') do %>
+  <div class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only"><%= trl('Toggle navigation') %></span>
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><strong>Foody</strong></a>
       </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><%=link_to(tr('Add Recipe'), '/recipe/create') %></li>
-      </ul>
+        <div class="nav navbar-right navbar-text">
+          <%= tml_language_selector_tag(:sideflags) %>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to(tr('Add Recipe'), {controller: :recipes, action: :new}) %></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 <% end %>

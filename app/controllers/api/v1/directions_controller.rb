@@ -30,10 +30,41 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#-- ::Api::V1::DirectionsController Routing Information
+#
+#  post      /api/v1/directions                  => create
+#  get       /api/v1/directions/:id              => show
+#  patch     /api/v1/directions/:id              => update
+#  put       /api/v1/directions/:id              => update
+#  delete    /api/v1/directions/:id              => destroy
+#
 #++
 
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class Api::V1::DirectionsController < Api::V1::BaseController
+
+  def show
+    direction
+  end
+
+  def create
+    @direction = Direction.create(params.permit(:recipe_id, :description))
+    render(:template => '/api/v1/direction/show')
+  end
+
+  def update
+    direction.update_attributes(params.permit(:description))
+    render(:template => '/api/v1/direction/show')
+  end
+
+  def destroy
+    direction.destroy
+    render_no_content
+  end
+
+private
+
+  def direction
+    @direction ||= Direction.find(params[:id])
+  end
+
 end

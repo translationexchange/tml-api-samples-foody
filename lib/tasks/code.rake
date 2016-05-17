@@ -32,7 +32,15 @@
 
 namespace :code do
   desc 'Annotates models'
-  task :annotate_models => :environment do
+
+  task :annotate => :environment do
+    annotate_models
+    annotate_controllers
+  end
+
+  private
+
+  def annotate_models
     root = "#{Rails.root}/app/models"
     files = Dir[File.expand_path("#{root}/**/**/**/*.rb")]
 
@@ -129,8 +137,7 @@ namespace :code do
     end
   end
 
-  desc 'Annotates controllers'
-  task :annotate_controllers => :environment do
+  def annotate_controllers
     root = "#{Rails.root}/app/controllers"
     files = Dir[File.expand_path("#{root}/**/**/**/*.rb")]
 
@@ -217,11 +224,9 @@ namespace :code do
     end
   end
 
-private
-
   def copyright(lines)
     lines << "#--"
-    lines << "# Copyright (c) 2015 Translation Exchange, Inc."
+    lines << "# Copyright (c) 2016 Translation Exchange, Inc."
     lines << "#"
     lines << "#"
     lines << "#  _______                  _       _   _             ______          _"

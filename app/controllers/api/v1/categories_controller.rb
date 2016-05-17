@@ -30,10 +30,52 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+#-- ::Api::V1::CategoriesController Routing Information
+#
+#  get       /api/v1/categories/:id/recipes      => recipes
+#  get       /api/v1/categories                  => index
+#  post      /api/v1/categories                  => create
+#  get       /api/v1/categories/:id              => show
+#  patch     /api/v1/categories/:id              => update
+#  put       /api/v1/categories/:id              => update
+#  delete    /api/v1/categories/:id              => destroy
+#
 #++
 
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class Api::V1::CategoriesController < Api::V1::BaseController
+
+  def index
+    @categories = Category.page(page).per(per_page)
+  end
+
+  def show
+    category
+  end
+
+  def create
+    @category = Category.create(params.permit(:key, :name, :locale))
+    render(:template => '/api/v1/category/show')
+  end
+
+  def update
+    category.update_attributes(params.permit(:key, :name, :locale))
+    render(:template => '/api/v1/category/show')
+  end
+
+  def destroy
+    category.destroy
+    render_no_content
+  end
+
+  def recipes
+    @recipes = category.recipes.page(page).per(per_page)
+    render(:template => '/api/v1/recipe/index')
+  end
+
+private
+
+  def category
+    @category ||= Category.find(params[:id])
+  end
+
 end

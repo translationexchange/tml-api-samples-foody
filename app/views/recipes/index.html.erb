@@ -10,6 +10,7 @@
     <h1>
       <%= tr('The Best in International Food') %>
     </h1>
+
     <p>
       <%= tr('Food from around the world') %>
     </p>
@@ -32,10 +33,10 @@
       <a id="<%= category.key %>" class="anchor">&nbsp;</a>
       <div class="page-header">
         <h3>
-          <%= link_to(tr(category.name), controller: 'category', action: 'show', key: category.key) %>
+          <%= link_to(tr(category.name), controller: 'categories', action: 'show', id: category.key) %>
         </h3>
       </div>
-      <%= render(partial: '/recipe/list', locals: {category: category, recipes: category.recipes.featured}) %>
+      <%= render(partial: '/recipes/list', locals: {category: category, recipes: category.recipes.featured}) %>
     <% end %>
   </div>
 </div>

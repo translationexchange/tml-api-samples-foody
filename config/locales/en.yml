@@ -20,6 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello:
+    world:
+      one: "You have a message"
+      other: "You have {count} messages"
+
+  stories:
+    video_tagging: "%{users} tagged %{user} in <a href='%{url}'>a video \"%{title}\"</a>."
+    image_tagging: "%{users} tagged %{user} in <a href='%{url}'>a video \"%{title}\"</a>."
+
   hello_world: "Hello World"
   greeting: "Hello {user}"
