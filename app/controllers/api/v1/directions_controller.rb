@@ -48,12 +48,12 @@ class Api::V1::DirectionsController < Api::V1::BaseController
 
   def create
     @direction = Direction.create(params.permit(:recipe_id, :description))
-    render(:template => '/api/v1/direction/show')
+    render(:template => '/api/v1/directions/show')
   end
 
   def update
     direction.update_attributes(params.permit(:description))
-    render(:template => '/api/v1/direction/show')
+    render(:template => '/api/v1/directions/show')
   end
 
   def destroy

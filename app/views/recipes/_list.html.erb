@@ -2,19 +2,19 @@
   <div class="col-lg-10 col-lg-offset-1">
     <div class="row">
       <% category.recipes.each do |recipe| %>
-          <div class="col-lg-4 col-md-6">
-            <%= link_to({controller: 'recipes', action: 'show', id: recipe.key}, class: 'panel panel-default recipe-thumbnail' ) do %>
-                <%= image_tag(recipe.image, class: 'img-responsive') %>
-                <div class="panel-body">
-                  <h4>
-                    <%=tr(recipe.name) unless recipe.name.blank? %>
-                  </h4>
-                  <p>
-                    <%=tr(recipe.description) unless recipe.description.blank? %>
-                  </p>
-                </div>
-            <% end %>
-          </div>
+        <div class="col-lg-4 col-md-6">
+          <%= link_to({controller: 'recipes', action: 'show', id: recipe.key}, class: 'panel panel-default recipe-thumbnail') do %>
+            <%= image_tag(recipe.image, class: 'img-responsive') %>
+            <div class="panel-body">
+              <h4>
+                <%= tr(recipe.name) unless recipe.name.blank? %>
+              </h4>
+              <p>
+                <%= tr(recipe.description) unless recipe.description.blank? %>
+              </p>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

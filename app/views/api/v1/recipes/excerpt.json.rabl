@@ -7,5 +7,5 @@ node(:image) do |obj|
 end
 
 node(:link) do |obj|
-  api_url_for(:controller => :recipe, :action => :show, :id => obj.id)
+  api_url_for(:controller => :recipes, :action => :show, :id => obj.id)
 end

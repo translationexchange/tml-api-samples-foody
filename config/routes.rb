@@ -8,12 +8,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :i18n, only: [:index]
+
   resources :categories, only: [:show]
 
-  resources :test do
+  resources :test, only: [] do
     collection do
       get :index
       get :emails
+      get :plurals
     end
   end
 

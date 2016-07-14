@@ -48,12 +48,12 @@ class Api::V1::IngredientsController < Api::V1::BaseController
 
   def create
     @ingredient = Ingredient.create(params.permit(:recipe_id, :quantity, :name, :measurements))
-    render(:template => '/api/v1/ingredient/show')
+    render(:template => '/api/v1/ingredients/show')
   end
 
   def update
     ingredient.update_attributes(params.permit(:quantity, :name, :measurements))
-    render(:template => '/api/v1/ingredient/show')
+    render(:template => '/api/v1/ingredients/show')
   end
 
   def destroy

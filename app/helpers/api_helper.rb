@@ -38,10 +38,8 @@ module ApiHelper
   end
 
   def api_url_for(url_params)
-    result = url_for(url_params.merge(
-        :access_token => params[:access_token]
-    ))
-    "#{request_host}/api/#{version}#{result}"
+    result = url_for(url_params)
+    "#{request_host}#{result}"
   end
 
   def first_page

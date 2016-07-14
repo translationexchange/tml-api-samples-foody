@@ -60,22 +60,22 @@ class Api::V1::RecipesController < Api::V1::BaseController
 
   def create
     @recipe = Recipe.create(params.permit(:category_id, :key, :name, :locale, :description, :image, :preparation))
-    render(:template => '/api/v1/recipe/show')
+    render(:template => '/api/v1/recipes/show')
   end
 
   def update
     recipe.update_attributes(params.permit(:key, :name, :locale, :description, :image, :preparation))
-    render(:template => '/api/v1/recipe/show')
+    render(:template => '/api/v1/recipes/show')
   end
 
   def directions
     @directions = recipe.directions.page(page).per(per_page)
-    render(:template => '/api/v1/direction/index')
+    render(:template => '/api/v1/directions/index')
   end
 
   def ingredients
     @ingredients = recipe.ingredients.page(page).per(per_page)
-    render(:template => '/api/v1/ingredient/index')
+    render(:template => '/api/v1/ingredients/index')
   end
 
 private

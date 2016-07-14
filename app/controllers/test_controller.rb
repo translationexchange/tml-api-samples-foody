@@ -47,4 +47,8 @@ class TestController < ApplicationController
     # tml_postoffice.deliver('michael@test.com', :sample2, {user: 'Michael'}, {locale: 'ru'})
   end
 
+  def plurals
+
+  end
+
 end

@@ -1,0 +1,16 @@
+<div class="text-center" style="padding:100px; font-size: 20px;">
+  <div class="container">
+
+
+    <%
+       users = [{name: "Michael"}, {name: "Anna"}, {name: "Peter"}]
+    %>
+
+
+    <%= tr('{users} joined the site', users: [users, :name, {limit: 2}]) %>
+
+
+    <br><br>
+
+  </div>
+</div>

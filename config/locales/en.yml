@@ -21,7 +21,8 @@
 
 en:
   hello:
-    world:
+    world: "Hello World"
+    count:
       one: "You have a message"
       other: "You have {count} messages"
 

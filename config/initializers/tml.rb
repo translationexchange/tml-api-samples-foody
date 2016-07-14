@@ -53,14 +53,15 @@ Tml.configure do |config|
 
   else
     config.application = {
-        key:      '9fbe39b689f222be9de4222d549403bdd1e7308827cd8404d6ccbfae041d1312',
+        # key:      '9fbe39b689f222be9de4222d549403bdd1e7308827cd8404d6ccbfae041d1312',
+        key:      '703e5af6d9cf21f95416cce2839f52012dced89a93fc0790ce31107b44ba1592',
         host:     'http://localhost:3000',
         cdn_host: 'https://trex-snapshots-dev.s3-us-west-1.amazonaws.com',
     }
 
-    config.postoffice = {
-        key:      'sadfs9adf0asdf90as9df0as9df0as9df09asdf09asdfa0sdfu09909090909009'
-    }
+    # config.postoffice = {
+    #     key:      'sadfs9adf0asdf90as9df0as9df0as9df09asdf09asdfa0sdfu09909090909009'
+    # }
 
     # config.cache = {
     #   adapter:    'file',
