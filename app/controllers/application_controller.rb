@@ -41,5 +41,8 @@ class ApplicationController < ActionController::Base
   #   'ru'
   # end
 
+  # def default_url_options
+  #   { Tml.config.locale_param => tml_current_locale }
+  # end
 
 end

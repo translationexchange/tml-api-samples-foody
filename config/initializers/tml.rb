@@ -5,6 +5,28 @@ Tml.configure do |config|
   tml_env = Rails.env
   # tml_env = 'staging'
 
+  config.domain = 'lvh.me'
+
+  config.locale = {
+      default:      'en',
+      strategy:     'pre-path',
+      mode:         'pre-path'
+      # default_subdomain: 'www',
+      # skip_default:  true
+  }
+
+  # config.locale = {
+  #     default:  'en',
+  #     strategy: 'custom-domain',
+  #     mode:     'custom-domain',
+  #     method:   'current_locale',
+  #     mapping: {
+  #         'en' => 'my-en.lvh.me:4050',
+  #         'ru' => 'my-ru.lvh.me:4050',
+  #         'ko' => 'my-ko.lvh.me:4050'
+  #     }
+  # }
+
   if tml_env == 'staging'
     config.application = {
         # key:      '96b5cb2962dab21e7338902a5802e299463d319aa24d53ec19d5e156fff0fcbc',
@@ -53,8 +75,8 @@ Tml.configure do |config|
 
   else
     config.application = {
-        # key:      '9fbe39b689f222be9de4222d549403bdd1e7308827cd8404d6ccbfae041d1312',
-        key:      '703e5af6d9cf21f95416cce2839f52012dced89a93fc0790ce31107b44ba1592',
+        key:      '9fbe39b689f222be9de4222d549403bdd1e7308827cd8404d6ccbfae041d1312',
+        # key:      '703e5af6d9cf21f95416cce2839f52012dced89a93fc0790ce31107b44ba1592',
         host:     'http://localhost:3000',
         cdn_host: 'https://trex-snapshots-dev.s3-us-west-1.amazonaws.com',
     }

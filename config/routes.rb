@@ -1,22 +1,26 @@
 Rails.application.routes.draw do
 
-  root 'recipes#index'
+  get "/:#{Tml.config.locale_param}" => 'recipes#index'
 
-  resources :recipes do
-    member do
-      get :delete
+  scope "(:#{Tml.config.locale_param})" do
+    root 'recipes#index'
+
+    resources :recipes do
+      member do
+        get :delete
+      end
     end
-  end
 
-  resources :i18n, only: [:index]
+    resources :i18n, only: [:index]
 
-  resources :categories, only: [:show]
+    resources :categories, only: [:show]
 
-  resources :test, only: [] do
-    collection do
-      get :index
-      get :emails
-      get :plurals
+    resources :test, only: [] do
+      collection do
+        get :index
+        get :emails
+        get :plurals
+      end
     end
   end
 

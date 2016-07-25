@@ -4,7 +4,7 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="row">
           <div class="col-lg-6 col-sm-7">
-            <%=link_to(tr('Back'), params[:category] ? {controller: 'category', action: 'show', key: params[:category]} : root_url, {class: 'back-btn'}) %>
+            <%=link_to(tr('Back'), params[:category] ? params.merge({controller: 'category', action: 'show', key: params[:category]}) : root_url, {class: 'back-btn'}) %>
             <div class="recipe">
               <h2>
                 <%= tr(@recipe.name) %>
