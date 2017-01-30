@@ -27,7 +27,7 @@ class Trex::ApiClient
     res = if mthd == :get
       RestClient.get(url, {params: params})
     else
-      RestClient.send(mthd, url, params, {})
+      RestClient.send(mthd, url, params.to_json, {'Content-Type' => "application/json"})
     end
 
     JSON.parse(res)

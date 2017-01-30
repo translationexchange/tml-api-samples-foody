@@ -24,8 +24,13 @@ class Trex::Globalize
     get_translation_keys do |page|
       page.each do |tkey|
         model, attribute = parse_key(tkey['external_id'])
-        puts "MODEL IS #{model.inspect} ATTR IS #{attribute}"
-        #binding.pry
+        tkey['translations'].each do |tr|
+          if tr['locked']
+            I18n.locale = tr['locale']
+            model.update_attribute(attribute, tr['label'])
+            puts "Updated translation #{model.class.name} #{model.id} #{attribute} #{tr['label']}"
+          end
+        end
       end
     end
   end
@@ -50,6 +55,8 @@ private
           translations: tr_data
         }
       }
+
+      puts "SEND PARAMS #{params.inspect}"
 
       begin
         client.post("translation_keys", params)
