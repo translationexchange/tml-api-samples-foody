@@ -1,6 +1,6 @@
-class Trex::Globalize
-  def initialize
-    @client = Trex::ApiClient.new("464429b1b370daf735ae0f88cc03361bc94a27fff450ee01196af244c83c1948")
+class Trex::Apiv2
+  def initialize(api_token)
+    @client = Trex::ApiClient.new(api_token)
   end
 
   def client
@@ -25,10 +25,14 @@ class Trex::Globalize
       page.each do |tkey|
         model, attribute = parse_key(tkey['external_id'])
         tkey['translations'].each do |tr|
+          puts tr.inspect
+          
           if tr['locked']
-            I18n.locale = tr['locale']
-            model.update_attribute(attribute, tr['label'])
-            puts "Updated translation #{model.class.name} #{model.id} #{attribute} #{tr['label']}"
+            if I18n.available_locales.include?(tr['locale'].to_sym)
+              I18n.locale = tr['locale']
+              model.update_attribute(attribute, tr['label'])
+              puts "Updated translation #{model.class.name} #{model.id} #{attribute} #{tr['label']}"
+            end
           end
         end
       end

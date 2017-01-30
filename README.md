@@ -15,7 +15,7 @@ Installation
 To install the app, use:
 
 ```ssh
-$ git clone https://github.com/translationexchange/tml-rails-samples-foody.git
+$ git clone https://github.com/translationexchange/tml-api-samples-foody.git
 $ bundle install
 $ bundle exec rails s
 ```
