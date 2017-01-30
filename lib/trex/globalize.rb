@@ -21,6 +21,13 @@ class Trex::Globalize
   end
 
   def fetch_translations
+    get_translation_keys do |page|
+      page.each do |tkey|
+        model, attribute = parse_key(tkey['external_id'])
+        puts "MODEL IS #{model.inspect} ATTR IS #{attribute}"
+        #binding.pry
+      end
+    end
   end
 
 private
@@ -43,7 +50,7 @@ private
           translations: tr_data
         }
       }
-      puts "UPLOADING #{params}"
+
       begin
         client.post("translation_keys", params)
       rescue RestClient::UnprocessableEntity => e
@@ -57,8 +64,25 @@ private
     end
   end
 
+  def get_translation_keys(&block)
+    cur_page = 0
+    max_pages = 1_000_000_000
+    while cur_page <= max_pages
+      resp = client.get("translation_keys", {per_page: 5})
+      max_pages = resp['pagination']['total_pages']
+      block.call(resp['results'])
+      cur_page += 1
+    end
+  end
+
   def make_key(model, attribute)
     [model.class.table_name, model.id, attribute].join(":")
+  end
+
+  def parse_key(external_id)
+    ext_id = external_id.split(":")
+    const = ext_id[0].classify.constantize
+    [const.find(ext_id[1]), ext_id[2]]
   end
 end
 

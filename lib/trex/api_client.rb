@@ -25,7 +25,7 @@ class Trex::ApiClient
     url = "#{HOST}#{path}"
     params[:access_token] = @access_token
     res = if mthd == :get
-      RestClient.get(url, params)
+      RestClient.get(url, {params: params})
     else
       RestClient.send(mthd, url, params, {})
     end
