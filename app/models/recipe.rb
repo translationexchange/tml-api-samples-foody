@@ -58,6 +58,8 @@ class Recipe < ActiveRecord::Base
   has_many    :directions,  dependent: :destroy
   has_many    :ingredients, dependent: :destroy
 
+  translates :name, :description
+
   def self.featured
     where('featured_index not null').order('featured_index asc')
   end

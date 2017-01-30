@@ -1,2 +1,2 @@
-rvm ruby-2.3.1@tml-apiv2-samples --create;
+rvm ruby-2.2.2@tml-apiv2-samples --create;
 

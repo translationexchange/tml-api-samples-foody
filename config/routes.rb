@@ -1,4 +1,29 @@
 Rails.application.routes.draw do
+
+  get "/:locale" => 'recipes#index'
+
+  scope "(:locale)" do
+    root 'recipes#index'
+
+    resources :recipes do
+      member do
+        get :delete
+      end
+    end
+
+    resources :i18n, only: [:index]
+
+    resources :categories, only: [:show]
+
+    resources :test, only: [] do
+      collection do
+        get :index
+        get :emails
+        get :plurals
+      end
+    end
+  end
+
   api_version(
       :module => 'Api::V1',
       :path => {:value => 'api/v1'},

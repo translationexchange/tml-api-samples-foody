@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928043339) do
+ActiveRecord::Schema.define(version: 20170127174547) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "key"
@@ -46,6 +46,32 @@ ActiveRecord::Schema.define(version: 20150928043339) do
 
   add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id"
 
+  create_table "migrations", id: false, force: :cascade do |t|
+    t.string  "migration", null: false
+    t.integer "batch",     null: false
+  end
+
+  create_table "password_resets", id: false, force: :cascade do |t|
+    t.string   "email",      null: false
+    t.string   "token",      null: false
+    t.datetime "created_at", null: false
+  end
+
+  add_index "password_resets", ["email"], name: "password_resets_email_index"
+  add_index "password_resets", ["token"], name: "password_resets_token_index"
+
+  create_table "recipe_translations", force: :cascade do |t|
+    t.integer  "recipe_id",   null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.text     "description"
+  end
+
+  add_index "recipe_translations", ["locale"], name: "index_recipe_translations_on_locale"
+  add_index "recipe_translations", ["recipe_id"], name: "index_recipe_translations_on_recipe_id"
+
   create_table "recipes", force: :cascade do |t|
     t.integer  "category_id"
     t.string   "key"
@@ -61,5 +87,16 @@ ActiveRecord::Schema.define(version: 20150928043339) do
 
   add_index "recipes", ["category_id"], name: "index_recipes_on_category_id"
   add_index "recipes", ["key"], name: "index_recipes_on_key"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",           null: false
+    t.string   "email",          null: false
+    t.string   "password",       null: false
+    t.string   "remember_token"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "users", ["email"], name: "users_email_unique", unique: true
 
 end
